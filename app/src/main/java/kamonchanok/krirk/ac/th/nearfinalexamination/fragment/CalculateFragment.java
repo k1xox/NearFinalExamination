@@ -7,6 +7,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import kamonchanok.krirk.ac.th.nearfinalexamination.MainActivity;
 import kamonchanok.krirk.ac.th.nearfinalexamination.R;
@@ -38,7 +41,30 @@ public class CalculateFragment extends Fragment{
 
 //        Exchange Cntroller
 
+        Button  button = getView().findViewById(R.id.btnExchange);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                EditText editText = getView().findViewById(R.id.edtMoney);
+                String moneyString = editText.getText().toString().trim();
+                if (moneyString.isEmpty()) {
+                    Toast.makeText(getActivity(), "Please Fill USD money", Toast.LENGTH_SHORT).show();
+                }else {
+
+                    double moneyADouble = Double.parseDouble(moneyString);
+                    double answerADouble = moneyADouble * 33;
+
+                    String answerString = Double.toString(answerADouble);
+
+                    Toast.makeText(getActivity(),"Your " + moneyString + "USD. ==> " + answerString + "THB. ",
+                            Toast.LENGTH_SHORT).show();
+
+                    editText.setText("");
+
+                }
+            }
+        });
 
     }//Main Method
 
